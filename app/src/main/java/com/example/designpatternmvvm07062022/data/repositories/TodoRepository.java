@@ -14,15 +14,18 @@ public class TodoRepository {
         this.todos = todos;
     }
 
-    public void insertTodo(Todo todo) {
+    public List<Todo> insertTodo(Todo todo) {
         todos.add(todo);
+        return todos;
     }
 
-    public void removeTodo(Todo todo) {
+    public List<Todo> removeTodo(Todo todo) {
         todos.remove(todo);
+        return todos;
     }
 
-    public void updateTodo(int index, Todo todo) {
+    public List<Todo> updateTodo(int index, Todo todo) {
         todos.set(index, todo);
+        return todos;
     }
 }
