@@ -20,7 +20,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     List<Todo> todoList;
 
-    public TodoAdapter(List<Todo> todoList) {
+    public TodoAdapter() { }
+
+    public void setTodoList(List<Todo> todoList) {
         this.todoList = todoList;
     }
 
@@ -39,7 +41,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     @Override
     public int getItemCount() {
-        return todoList.size();
+        return todoList != null && todoList.size() > 0 ? todoList.size() : 0;
     }
 
     class TodoViewHolder extends RecyclerView.ViewHolder {
