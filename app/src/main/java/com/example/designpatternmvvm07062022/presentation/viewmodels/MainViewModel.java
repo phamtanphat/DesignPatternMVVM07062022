@@ -30,4 +30,8 @@ public class MainViewModel extends ViewModel {
         todoLiveData.setValue(todoRepository.insertTodo(todo));
     }
 
+    public void removeTodo(int position) {
+        todoLiveData.setValue(todoRepository.removeTodo(position));
+    }
+
 }

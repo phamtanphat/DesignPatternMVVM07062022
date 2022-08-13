@@ -3,6 +3,7 @@ package com.example.designpatternmvvm07062022.presentation.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,8 +20,7 @@ import java.util.List;
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder>{
 
     List<Todo> todoList;
-
-    public TodoAdapter() { }
+    private OnItemClickListener onItemClickListener;
 
     public void setTodoList(List<Todo> todoList) {
         this.todoList = todoList;
@@ -47,17 +47,35 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     class TodoViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvDescription;
-
+        Button btnRemove;
         public TodoViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.text_view_title);
             tvDescription = itemView.findViewById(R.id.text_view_description);
+            btnRemove = itemView.findViewById(R.id.button_remove);
+
+            btnRemove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onClick(getAdapterPosition());
+                    }
+                }
+            });
         }
 
         public void bind(Todo todo) {
             tvTitle.setText(todo.getTitle());
             tvDescription.setText(todo.getDescription());
         }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onClickListener) {
+        onItemClickListener = onClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onClick(int position);
     }
 }

@@ -19,8 +19,8 @@ public class TodoRepository {
         return todos;
     }
 
-    public List<Todo> removeTodo(Todo todo) {
-        todos.remove(todo);
+    public List<Todo> removeTodo(int position) {
+        todos.remove(position);
         return todos;
     }
 
